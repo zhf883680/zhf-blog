@@ -1,6 +1,6 @@
 <template>
   <el-col :xs="4" :sm="4" :md="4" :lg="4">
-    <el-menu default-active="2" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" theme="dark">
+    <el-menu default-active="2" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose">
       <el-submenu index="1">
       <template slot="title">前端</template>
           <el-menu-item index="1-1">js</el-menu-item>
