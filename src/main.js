@@ -9,8 +9,8 @@ import router from './router'
 Vue.use(ElementUI);
 
 Vue.use(Lazyload, {
-        error: '/Scripts/layer/skin/default/loading-2.gif',
-        loading: '/Scripts/layer/skin/default/loading-2.gif',
+        error: '../static/img/loading-2.gif',
+        loading: '../static/img/loading-2.gif',
         try: 3 // default 1
     })
 

@@ -1,9 +1,9 @@
 <template>
 	<div id="app">
 		<toolbar></toolbar>
-		<navbar></navbar>
-		<router-view></router-view>
-		<footInfo></footInfo>
+		 <el-col :span="24"><navbar></navbar></el-col>
+		 <el-col :span="24"><router-view></router-view></el-col>
+	 <el-col :span="24">	<footInfo></footInfo></el-col>
 	</div>
 </template>
 
@@ -19,4 +19,7 @@ import footInfo from './components/footInfo.vue'
    }
   }
 </script>
+<style>
+*{margin:0;padding:0;}
+</style>
 
