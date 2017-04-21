@@ -1,6 +1,6 @@
-# z
+# zhf-blog
 
-> A Vue.js project
+> this is a self blog
 
 ## Build Setup
 
