@@ -3,7 +3,7 @@
 		<toolbar></toolbar>
 		 <el-col :span="24"><navbar></navbar></el-col>
 		 <el-col :span="24"><router-view></router-view></el-col>
-	 <el-col :span="24">	<footInfo></footInfo></el-col>
+	   <el-col :span="24"><footInfo></footInfo></el-col>
 	</div>
 </template>
 

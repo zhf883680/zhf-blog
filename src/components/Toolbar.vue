@@ -3,15 +3,16 @@
     <el-menu-item index="/">首页</el-menu-item>
     <el-submenu index="2">
       <template slot="title">前端</template>
-      <el-menu-item index="/show">js</el-menu-item>
-      <el-menu-item index="2-2">css</el-menu-item>
-      <el-menu-item index="2-3">github</el-menu-item>
-      <el-menu-item index="2-4">node.js</el-menu-item>
+      <!-- <el-menu-item index="{name:'showList',params: { id: 1 }}">js</el-menu-item> -->
+        <el-menu-item index="/show/1">js</el-menu-item>
+      <el-menu-item index="/show/2">css</el-menu-item>
+      <el-menu-item index="/show/3">github</el-menu-item>
+      <el-menu-item index="/show/4">node.js</el-menu-item>
     </el-submenu>
     <el-submenu index="3"> 
       <template slot="title">后端</template>
-      <el-menu-item index="3-1">c#</el-menu-item>
-      <el-menu-item index="3-2">php</el-menu-item>
+      <el-menu-item index="/show/5">c#</el-menu-item>
+      <el-menu-item index="/show/6">php</el-menu-item>
       </el-submenu>
        <el-submenu index="4"> 
       <template slot="title">娱乐</template>
