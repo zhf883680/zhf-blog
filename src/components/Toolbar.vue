@@ -3,7 +3,7 @@
     <el-menu-item index="/">首页</el-menu-item>
     <el-submenu index="2">
       <template slot="title">前端</template>
-      <el-menu-item index="2-1">js</el-menu-item>
+      <el-menu-item index="/show">js</el-menu-item>
       <el-menu-item index="2-2">css</el-menu-item>
       <el-menu-item index="2-3">github</el-menu-item>
       <el-menu-item index="2-4">node.js</el-menu-item>

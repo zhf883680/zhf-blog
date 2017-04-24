@@ -11,6 +11,7 @@ export default new Router({
       path: '/',
       name: 'show',
       component: show
-    }, {path: '/photo', component: photo}
+    },
+    {path: '/photo', component: photo}
   ]
 })
