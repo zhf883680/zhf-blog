@@ -1,5 +1,5 @@
 <template>
- <div class="content">
+ <div>
 	<el-col :span="12" :offset="11"><h2>{{item.Title}}</h2></el-col>
 	<el-row>
 		  <el-col :span="12" :offset="12"><p>{{item.AddTime}}</p></el-col>

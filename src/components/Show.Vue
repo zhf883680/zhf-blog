@@ -1,6 +1,5 @@
  <template>
   <div>
-   {{$route.params.id}}
 	<div v-for="item in items" >
 	<router-link :to="{ name: 'article', params: { id: item.No }}">
 	<!-- <router-link :to="/path/item.no"> -->
@@ -21,8 +20,8 @@
   	  </div>
   </div>
  </template>
- <script>
- import axios from "axios"
+<script>
+import axios from "axios"
 export default{
 	data(){
 		return {items:JSON.parse('[{"no":1},{"no":2},{"no":3},{"no":4},{"no":5}]'),total:100};
@@ -34,13 +33,13 @@ export default{
 			this.getData(val);
 		},
 		getData(pageIndex){
-			//页面打开时,获取值
+		//页面打开时,获取值
 		//let $this_data=this._data;
-			//传递页数与文章所属模块
-		axios.post("http://localhost:5707/Article/GetArticle","pageIndex="+pageIndex+"&type="+this.$route.params.id).then(data=>{
-			this.items = data.data.rows;
-			this.total=data.data.total*10;
-		})
+		//传递页数与文章所属模块
+			axios.post("http://localhost:5707/Article/GetArticle","pageIndex="+pageIndex+"&type="+this.$route.params.id).then(data=>{  
+				this.items = data.data.rows;
+				this.total=	data.data.total;
+			})
 		}
 	},
 	mounted() {
