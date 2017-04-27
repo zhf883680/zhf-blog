@@ -17,7 +17,7 @@
        <el-submenu index="4"> 
       <template slot="title">娱乐</template>
       <el-menu-item index="/photo">图片</el-menu-item>
-      <el-menu-item index="4-2">娱乐</el-menu-item>
+      <el-menu-item index="/show/7">生活</el-menu-item>
       </el-submenu>
   </el-menu>
 </template>

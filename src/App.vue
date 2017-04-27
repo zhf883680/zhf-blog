@@ -1,10 +1,13 @@
 <template>
-	<div id="app">
-		<toolbar></toolbar>
-		 <el-col :span="24"><navbar></navbar></el-col>
-		 <el-col :span="24"><router-view></router-view></el-col>
- <el-col :span="12" :offset="8"><footInfo></footInfo></el-col>
-	</div>
+  <div id="app" class="whole">
+    <toolbar></toolbar>
+    <navbar></navbar>
+    <div class="body">
+        <router-view></router-view>
+      
+    </div>
+    <footInfo></footInfo>
+  </div>
 </template>
 
 <script>
@@ -21,6 +24,13 @@ import footInfo from './components/footInfo.vue'
 </script>
 <style>
 *{margin:0;padding:0;}
-
+.whole{
+    display:flex;
+  flex-direction:column;
+  min-height:100vh;
+}
+.body{
+  flex-grow:1;
+}
 </style>
 
