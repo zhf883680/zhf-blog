@@ -1,6 +1,6 @@
 <template>
 	 	<div class="title">
-			<h2>this is a photo</h2>
+
 	 	</div>
 </template>
 <style scoped>
@@ -9,7 +9,7 @@
   	display: flex;
 	justify-content:center;
 	align-items: center;
-	background-image: url(http://lorempixel.com/1920/200/);
+	background-image: url(http://area.sinaapp.com/bingImg);
 	height: 200px;
 }
 </style>
