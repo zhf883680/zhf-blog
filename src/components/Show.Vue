@@ -41,7 +41,8 @@ export default {
                 //页面打开时,获取值
                 //let $this_data=this._data;
                 //传递页数与文章所属模块
-                axios.post("http://localhost:5707/Article/GetArticle", "pageIndex=" + pageIndex + "&type=" + this.$route.params.id).then(data => {
+
+                axios.post("/Article/GetArticle", "pageIndex=" + pageIndex + "&type=" + this.$route.params.id).then(data => {
                     this.items = data.data.rows;
                     this.total = data.data.total;
                 })
@@ -93,7 +94,7 @@ export default {
         }
 }
 </script>
-<style type="text/css">
+<style>
 a {
     color: black;
 }
@@ -186,17 +187,3 @@ a:hover {
     line-height: 18px;
 }
 </style>
-<!--   <el-row>
-                                <el-col :span="12">
-                                    <span class="title">
-					  {{item.Title}}
-					  </span>
-                                </el-col>
-                                <el-col :span="12" class="otherInfo">
-                                    <span>
-					  时间:{{changeTime(item.AddTime)}} 阅读量:{{item.ViewCount}}
-					  </span>
-                                </el-col>
-                                <el-col ></el-col>
-                            </el-row>
-                            <hr> -->
