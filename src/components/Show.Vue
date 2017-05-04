@@ -129,8 +129,6 @@ a {
 }
 
 * {
-    margin: 0;
-    padding: 0;
     font-size: 12px;
     color: #666;
     list-style: none;
