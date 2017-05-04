@@ -44,8 +44,8 @@ export default {
                         .getSeconds());
                 return datetime;
             },
-            getData(){
-                 axios.post("/Article/GetArticleInfo", "id=" + this.$route.params.id).then((data) => {
+            getData() {
+                axios.post("/Article/GetArticleInfo", "id=" + this.$route.params.id).then((data) => {
                     this.item = data.data
                 })
             }
@@ -59,5 +59,5 @@ export default {
         }
 }
 </script>
-<style>
+<style scoped>
 </style>
