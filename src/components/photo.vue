@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-    <!-- photoswipe样式设置 -->
+        <!-- photoswipe样式设置 -->
         <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="pswp__bg"></div>
             <div class="pswp__scroll-wrap">
@@ -32,26 +32,20 @@
                 </div>
             </div>
         </div>
-
-    <el-row>
-      <el-col :span="3" v-for="(item, index) in items" :key="item" :offset="2">
-        <el-card :body-style="{ padding: '0px' }">
-          <!-- <img class="image" src="../assets/loading-2.gif" alt="图片" v-lazy="item.Path" @click="show"> -->
-          <img class="image" src="../assets/loading-2.gif" alt="图片" v-lazy="item.Path" @click="show(index)">
-
-          <div style="padding: 14px;">
-            <span>{{item.Description}}</span>
-            <div class="bottom clearfix">
-              <time class="time">{{ item.AddTime }}</time>
-              <el-button type="text" class="button" @click="download">下载</el-button>
-            </div>
-          </div>
-        </el-card>
-      </el-col>
-    </el-row>
-       <!--  <div class="photoList" v-for="item in items">
-            <img src="../assets/loading-2.gif" alt="图片" v-lazy="item.Path" @click="show">
-        </div> -->
+        <el-row>
+            <el-col :span="3" v-for="(item, index) in items" :key="item" :offset="2">
+                <el-card :body-style="{ padding: '0px' }">
+                    <img class="image" src="../assets/loading-2.gif" alt="图片" v-lazy="item.Path" @click="show(index)" :width="item.Width" :Height="item.Height">
+                    <div style="padding: 14px;">
+                        <span>{{item.Description}}</span>
+                        <div class="bottom clearfix">
+                            <time class="time">{{ item.AddTime }}</time>
+                            <el-button type="text" class="button" @click="download">下载</el-button>
+                        </div>
+                    </div>
+                </el-card>
+            </el-col>
+        </el-row>
     </div>
 </template>
 <script>
@@ -68,86 +62,55 @@ export default {
         }
     },
     mounted() {
+        //服务器使用
         // axios.post("/Home/GetPhoto").then((data)=>{
         //      this.items= data.data;
         // })
-        let item={
-            Path:"../../static/img/1.jpg"
+        //本地测试使用
+        let item = {
+            Path: "../../static/img/1.jpg",
+            Width: 500,
+            Height: 500
         }
-        let i=0;
-        do{
+        let i = 0;
+        do {
             this.items.push(item);
             i++;
         }
-        while(i<15);
+        while (i < 15);
     },
     methods: {
         show(index) {
             //新js
             let items = new Array; //图片集合
             let item; //单个图片
-             let options = { //设置 http://photoswipe.com/documentation/options.html
+            let options = { //设置 http://photoswipe.com/documentation/options.html
                 index: index,
-                history:false
+                history: false //url不变
             };
-            let Imgs=new Array;
-            let allImg=document.getElementsByTagName("img");
-            for(let img of allImg){
-                if(img.attributes[4].nodeValue=="loaded"){
-                   //将所有图片的值放入
-                item = {
-                    src: img.attributes[1].nodeValue,
-                    w: 300,
-                    h: 300
-                };
-                //获取图片大小
-                this.getImageWidth(item.src, function(w, h) {
-                    item.w = w;
-                    item.h = h;
-                });
-                //将图片信息增加
-                items.push(item);
+            let allImg = document.getElementsByTagName("img"); //获取页面中所有图片
+            for (let img of allImg) {
+                //找到同样列表下的图片
+                if (img.attributes[6] == undefined) {
+                    continue;
                 }
-                let gallery = new PhotoSwipe(document.querySelectorAll('.pswp')[0], PhotoSwipeUI_Default, items, options);
-                 gallery.init();
+                //将图片信息放入列表中
+                if (img.attributes[6].nodeValue == "loaded") {
+                    //将所有图片的值放入
+                    item = {
+                        src: img.attributes[1].nodeValue,
+                        w: img.attributes[3].nodeValue,
+                        h: img.attributes[4].nodeValue
+                    };
+                    //将图片信息增加
+                    items.push(item);
+                }
             }
-            // let Imgs = new Array;
-            // let imgSibling = clickElem.target.parentNode.parentNode.children;
-            // for (let img of imgSibling) {
-            //     if (img.children[0].tagName === "IMG") {
-            //         Imgs.push(img.children[0]);
-            //     }
-            // }
-            // //设置索引
-            // let items = new Array; //图片集合
-            // let item; //单个图片
-            // let options = { //设置 http://photoswipe.com/documentation/options.html
-            //     index: 0
-            // };
-            // let imgIndex = 0;
-            // for (let img of Imgs) {
-            //     imgIndex++;
-            //     item = {
-            //         src: img.attributes[0].nodeValue,
-            //         w: 300,
-            //         h: 300
-            //     };
-            //     //获取图片大小
-            //     this.getImageWidth(item.src, function(w, h) {
-            //         item.w = w;
-            //         item.h = h;
-            //     });
-            //     //将图片信息增加
-            //     items.push(item);
-            //     //设置索引
-            //     if (img.attributes[0].nodeValue == clickElem.target.attributes[0].nodeValue) {
-            //         options.index = imgIndex;
-            //     }
-            // }
-            // //初始化
-            // let gallery = new PhotoSwipe(document.querySelectorAll('.pswp')[0], PhotoSwipeUI_Default, items, options);
-            // gallery.init();
+            //初始化photoswipe控件
+            let gallery = new PhotoSwipe(document.querySelectorAll('.pswp')[0], PhotoSwipeUI_Default, items, options);
+            gallery.init();
         },
+        //获取图片宽度 --改为上传时,获取宽度 此方法不再调用
         getImageWidth(url, callback) {
             let img = new Image();
             img.src = url;
@@ -161,7 +124,7 @@ export default {
                 }
             }
         },
-        download(url){
+        download(url) {
             //下载功能
         }
     }
@@ -175,35 +138,36 @@ export default {
     justify-content: center;
     align-items: center;
 }
+
 .time {
     font-size: 13px;
     color: #999;
-  }
-  
-  .bottom {
+}
+
+.bottom {
     margin-top: 13px;
     line-height: 12px;
-  }
+}
 
-  .button {
+.button {
     padding: 0;
     margin-top: 5px;
     float: right;
-  }
+}
 
-  .image {
+.image {
     width: 100%;
     height: 200px;
     display: block;
-  }
+}
 
-  .clearfix:before,
-  .clearfix:after {
-      display: table;
-      content: "";
-  }
-  
-  .clearfix:after {
-      clear: both
-  }
+.clearfix:before,
+.clearfix:after {
+    display: table;
+    content: "";
+}
+
+.clearfix:after {
+    clear: both
+}
 </style>
